@@ -11,7 +11,7 @@ variable "page_rules" {
   type = list(object({
     target      = string
     status      = bool
-    action      = list(string)
+    actions     = list(string)
   }))
   default = []
 }
