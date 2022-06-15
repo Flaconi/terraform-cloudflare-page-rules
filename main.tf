@@ -6,7 +6,7 @@ data "cloudflare_zones" "domain" {
 
 resource "cloudflare_page_rule" "page_rules" {
   zone_id  = lookup(data.cloudflare_zones.domain.zones[0], "id")
-  for_each = local.rules
+  for_each = local.page_rules
   target   = each.value["target"]
 
   priority = lookup(each.value, "priority", null)
