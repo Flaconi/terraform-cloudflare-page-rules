@@ -16,7 +16,9 @@ Template for Terraform modules
 <!-- TFDOCS_PROVIDER_START -->
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_cloudflare"></a> [cloudflare](#provider\_cloudflare) | n/a |
 
 <!-- TFDOCS_PROVIDER_END -->
 
@@ -32,7 +34,10 @@ No providers.
 <!-- TFDOCS_INPUTS_START -->
 ## Required Inputs
 
-No required inputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_domain"></a> [domain](#input\_domain) | Cloudflare domain to apply rules for. | `string` | n/a | yes |
+| <a name="input_page_rules"></a> [page\_rules](#input\_page\_rules) | Cloudflare page rule configuration list | `list` | `[]` | no |
 
 ## Optional Inputs
 
@@ -43,7 +48,10 @@ No optional inputs.
 <!-- TFDOCS_OUTPUTS_START -->
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_domain"></a> [domain](#output\_domain) | Current zone information. |
+| <a name="output_rules"></a> [rules](#output\_rules) | Created Cloudflare page rules for the current zone. |
 
 <!-- TFDOCS_OUTPUTS_END -->
 
