@@ -1,11 +1,41 @@
-# terraform-module-template
-Template for Terraform modules
+# Terraform module: Cloudflare Page Rules
 
 
 [![lint](https://github.com/flaconi/terraform-cloudflare-pagerules/workflows/lint/badge.svg)](https://github.com/flaconi/terraform-cloudflare-pagerules/actions?query=workflow%3Alint)
 [![test](https://github.com/flaconi/terraform-cloudflare-pagerules/workflows/test/badge.svg)](https://github.com/flaconi/terraform-cloudflare-pagerules/actions?query=workflow%3Atest)
 [![Tag](https://img.shields.io/github/tag/flaconi/terraform-cloudflare-pagerules.svg)](https://github.com/flaconi/terraform-cloudflare-pagerules/releases)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+## Priority of rules
+
+This module omits the `priority` key for rulesets and auto-calculates those by the order they appear in the `page_rules` list.
+
+
+## Example
+
+`terraform.tfvars`:
+```hcl
+domain = "<domain.tld>"
+
+page_rules = [
+  {
+    target   = "<target>"
+    status   = "disabled"
+    actions = {
+      forwarding_url = [{
+        status_code = "<status_code>"
+        url         = "<url>"
+      }]
+    }
+  },
+  {
+    target   = "<target>"
+    actions = {
+      always_use_https = "true"
+    }
+  }
+]
+```
 
 <!-- TFDOCS_HEADER_START -->
 
