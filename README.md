@@ -1,11 +1,10 @@
 # terraform-module-template
 Template for Terraform modules
 
-<!-- Uncomment and replace with your module name
-[![lint](https://github.com/flaconi/<MODULENAME>/workflows/lint/badge.svg)](https://github.com/flaconi/<MODULENAME>/actions?query=workflow%3Alint)
-[![test](https://github.com/flaconi/<MODULENAME>/workflows/test/badge.svg)](https://github.com/flaconi/<MODULENAME>/actions?query=workflow%3Atest)
-[![Tag](https://img.shields.io/github/tag/flaconi/<MODULENAME>.svg)](https://github.com/flaconi/<MODULENAME>/releases)
--->
+
+[![lint](https://github.com/flaconi/terraform-cloudflare-pagerules/workflows/lint/badge.svg)](https://github.com/flaconi/terraform-cloudflare-pagerules/actions?query=workflow%3Alint)
+[![test](https://github.com/flaconi/v/workflows/test/badge.svg)](https://github.com/flaconi/terraform-cloudflare-pagerules/actions?query=workflow%3Atest)
+[![Tag](https://img.shields.io/github/tag/flaconi/terraform-cloudflare-pagerules.svg)](https://github.com/flaconi/terraform-cloudflare-pagerules/releases)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 <!-- TFDOCS_HEADER_START -->
@@ -18,7 +17,7 @@ Template for Terraform modules
 
 | Name | Version |
 |------|---------|
-| <a name="provider_cloudflare"></a> [cloudflare](#provider\_cloudflare) | n/a |
+| <a name="provider_cloudflare"></a> [cloudflare](#provider\_cloudflare) | ~> 3.9.1 |
 
 <!-- TFDOCS_PROVIDER_END -->
 
@@ -28,6 +27,7 @@ Template for Terraform modules
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0 |
+| <a name="requirement_cloudflare"></a> [cloudflare](#requirement\_cloudflare) | ~> 3.9.1 |
 
 <!-- TFDOCS_REQUIREMENTS_END -->
 
@@ -36,12 +36,9 @@ Template for Terraform modules
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_api_token"></a> [api\_token](#input\_api\_token) | The Cloudflare API token. | `string` | n/a | yes |
 | <a name="input_domain"></a> [domain](#input\_domain) | Cloudflare domain to apply rules for. | `string` | n/a | yes |
-| <a name="input_page_rules"></a> [page\_rules](#input\_page\_rules) | Cloudflare page rule configuration list | `list` | `[]` | no |
-
-## Optional Inputs
-
-No optional inputs.
+| <a name="input_page_rules"></a> [page\_rules](#input\_page\_rules) | List of Cloudflare page rule objects. | `list` | `[]` | no |
 
 <!-- TFDOCS_INPUTS_END -->
 
@@ -51,7 +48,7 @@ No optional inputs.
 | Name | Description |
 |------|-------------|
 | <a name="output_domain"></a> [domain](#output\_domain) | Current zone information. |
-| <a name="output_rules"></a> [rules](#output\_rules) | Created Cloudflare page rules for the current zone. |
+| <a name="output_page_rules"></a> [page\_rules](#output\_page\_rules) | Created Cloudflare page rules for the current zone. |
 
 <!-- TFDOCS_OUTPUTS_END -->
 

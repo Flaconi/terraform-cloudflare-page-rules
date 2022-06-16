@@ -8,5 +8,5 @@ variable "domain" {
 }
 variable "page_rules" {
   description = "List of Cloudflare page rule objects."
-  default = []
+  default     = []
 }

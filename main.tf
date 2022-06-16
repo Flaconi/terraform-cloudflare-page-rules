@@ -19,6 +19,7 @@ resource "cloudflare_page_rule" "page_rules" {
     disable_performance      = lookup(each.value["actions"], "disable_performance", null)
     disable_railgun          = lookup(each.value["actions"], "disable_railgun", null)
     disable_security         = lookup(each.value["actions"], "disable_security", null)
+    disable_zaraz            = lookup(each.value["actions"], "disable_security", null)
     edge_cache_ttl           = lookup(each.value["actions"], "edge_cache_ttl", null)
     automatic_https_rewrites = lookup(each.value["actions"], "automatic_https_rewrites", null)
     browser_cache_ttl        = lookup(each.value["actions"], "browser_cache_ttl", null)
@@ -31,20 +32,15 @@ resource "cloudflare_page_rule" "page_rules" {
     dynamic "cache_key_fields" {
       for_each = lookup(each.value["actions"], "cache_key_fields", [])
       content {
-        header {
-          exclude        = contains(keys(cache_key_fields.value), "header") ? lookup(cache_key_fields.value["header"], "exclude", null) : null
-          include        = contains(keys(cache_key_fields.value), "header") ? lookup(cache_key_fields.value["header"], "include", null) : null
-          check_presence = contains(keys(cache_key_fields.value), "header") ? lookup(cache_key_fields.value["header"], "check_presence", null) : null
-        }
         query_string {
           exclude = contains(keys(cache_key_fields.value), "query_string") ? lookup(cache_key_fields.value["query_string"], "exclude", null) : null
           include = contains(keys(cache_key_fields.value), "query_string") ? lookup(cache_key_fields.value["query_string"], "include", null) : null
           ignore  = contains(keys(cache_key_fields.value), "query_string") ? lookup(cache_key_fields.value["query_string"], "ignore", null) : null
         }
-        user {
-          lang        = contains(keys(cache_key_fields.value), "user") ? lookup(cache_key_fields.value["user"], "lang", null) : null
-          device_type = contains(keys(cache_key_fields.value), "user") ? lookup(cache_key_fields.value["user"], "device_type", null) : null
-          geo         = contains(keys(cache_key_fields.value), "user") ? lookup(cache_key_fields.value["user"], "geo", null) : null
+        header {
+          exclude        = contains(keys(cache_key_fields.value), "header") ? lookup(cache_key_fields.value["header"], "exclude", null) : null
+          include        = contains(keys(cache_key_fields.value), "header") ? lookup(cache_key_fields.value["header"], "include", null) : null
+          check_presence = contains(keys(cache_key_fields.value), "header") ? lookup(cache_key_fields.value["header"], "check_presence", null) : null
         }
         cookie {
           check_presence = contains(keys(cache_key_fields.value), "cookie") ? lookup(cache_key_fields.value["cookie"], "check_presence", null) : null
@@ -52,6 +48,11 @@ resource "cloudflare_page_rule" "page_rules" {
         }
         host {
           resolved = contains(keys(cache_key_fields.value), "host") ? lookup(cache_key_fields.value["host"], "resolved", null) : null
+        }
+        user {
+          lang        = contains(keys(cache_key_fields.value), "user") ? lookup(cache_key_fields.value["user"], "lang", null) : null
+          device_type = contains(keys(cache_key_fields.value), "user") ? lookup(cache_key_fields.value["user"], "device_type", null) : null
+          geo         = contains(keys(cache_key_fields.value), "user") ? lookup(cache_key_fields.value["user"], "geo", null) : null
         }
       }
     }
