@@ -64,11 +64,31 @@ page_rules = [
 <!-- TFDOCS_INPUTS_START -->
 ## Required Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_api_token"></a> [api\_token](#input\_api\_token) | The Cloudflare API token. | `string` | n/a | yes |
-| <a name="input_domain"></a> [domain](#input\_domain) | Cloudflare domain to apply rules for. | `string` | n/a | yes |
-| <a name="input_page_rules"></a> [page\_rules](#input\_page\_rules) | List of Cloudflare page rule objects. | `list` | `[]` | no |
+The following input variables are required:
+
+### <a name="input_api_token"></a> [api\_token](#input\_api\_token)
+
+Description: The Cloudflare API token.
+
+Type: `string`
+
+### <a name="input_domain"></a> [domain](#input\_domain)
+
+Description: Cloudflare domain to apply rules for.
+
+Type: `string`
+
+## Optional Inputs
+
+The following input variables are optional (have default values):
+
+### <a name="input_page_rules"></a> [page\_rules](#input\_page\_rules)
+
+Description: List of Cloudflare page rule objects.
+
+Type: `list`
+
+Default: `[]`
 
 <!-- TFDOCS_INPUTS_END -->
 
