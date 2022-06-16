@@ -19,7 +19,7 @@ resource "cloudflare_page_rule" "page_rules" {
     disable_performance      = lookup(each.value["actions"], "disable_performance", null)
     disable_railgun          = lookup(each.value["actions"], "disable_railgun", null)
     disable_security         = lookup(each.value["actions"], "disable_security", null)
-    disable_zaraz            = lookup(each.value["actions"], "disable_security", null)
+    disable_zaraz            = lookup(each.value["actions"], "disable_zaraz", null)
     edge_cache_ttl           = lookup(each.value["actions"], "edge_cache_ttl", null)
     automatic_https_rewrites = lookup(each.value["actions"], "automatic_https_rewrites", null)
     browser_cache_ttl        = lookup(each.value["actions"], "browser_cache_ttl", null)
