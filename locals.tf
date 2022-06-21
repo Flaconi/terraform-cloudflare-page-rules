@@ -21,7 +21,8 @@ locals {
   page_rules = { for idx, item in var.page_rules : item["target"] => merge(
     item,
     {
-      priority = idx + 1
+      # priority = idx + 1
+      priority = length(var.page_rules) - idx
     }
     )
   }
