@@ -47,7 +47,7 @@ page_rules = [
 
 | Name | Version |
 |------|---------|
-| <a name="provider_cloudflare"></a> [cloudflare](#provider\_cloudflare) | ~> 3.17.0 |
+| <a name="provider_cloudflare"></a> [cloudflare](#provider\_cloudflare) | ~> 3.17 |
 
 <!-- TFDOCS_PROVIDER_END -->
 
@@ -57,7 +57,7 @@ page_rules = [
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0 |
-| <a name="requirement_cloudflare"></a> [cloudflare](#requirement\_cloudflare) | ~> 3.17.0 |
+| <a name="requirement_cloudflare"></a> [cloudflare](#requirement\_cloudflare) | ~> 3.17 |
 
 <!-- TFDOCS_REQUIREMENTS_END -->
 
