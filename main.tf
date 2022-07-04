@@ -68,7 +68,7 @@ resource "cloudflare_page_rule" "page_rules" {
     email_obfuscation      = lookup(each.value["actions"], "email_obfuscation", null)
     explicit_cache_control = lookup(each.value["actions"], "explicit_cache_control", null)
     dynamic "forwarding_url" {
-      for_each = lookup(each.value["actions"], "forwarding_url", [])
+      for_each = lookup(each.value["actions"], "forwarding_url", []) != null ? lookup(each.value["actions"], "forwarding_url", []) : []
       content {
         status_code = forwarding_url.value["status_code"]
         url         = forwarding_url.value["url"]
@@ -77,7 +77,7 @@ resource "cloudflare_page_rule" "page_rules" {
     host_header_override = lookup(each.value["actions"], "host_header_override", null)
     ip_geolocation       = lookup(each.value["actions"], "ip_geolocation", null)
     dynamic "minify" {
-      for_each = lookup(each.value["actions"], "minify", [])
+      for_each = lookup(each.value["actions"], "minify", []) != null ? lookup(each.value["actions"], "minify", []) : []
       content {
         html = minify.value["html"]
         css  = minify.value["css"]
