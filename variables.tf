@@ -62,7 +62,7 @@ variable "page_rules" {
       email_obfuscation      = optional(string)
       explicit_cache_control = optional(string)
 
-      forwarding_url  = optional(list(object({
+      forwarding_url = optional(list(object({
         status_code = string
         url         = string
       })))
@@ -70,12 +70,11 @@ variable "page_rules" {
       host_header_override = optional(string)
       ip_geolocation       = optional(string)
 
-      minify  = optional(list(object({
+      minify = optional(list(object({
         html = string
         css  = string
         js   = string
       })))
-
 
       mirage                      = optional(string)
       opportunistic_encryption    = optional(string)
@@ -91,7 +90,6 @@ variable "page_rules" {
       ssl                         = optional(string)
       true_client_ip_header       = optional(string)
       waf                         = optional(string)
-
     })
   }))
   default = []
