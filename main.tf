@@ -77,7 +77,7 @@ resource "cloudflare_page_rule" "page_rules" {
     host_header_override = lookup(each.value["actions"], "host_header_override", null)
     ip_geolocation       = lookup(each.value["actions"], "ip_geolocation", null)
     dynamic "minify" {
-      for_each = lookup(each.value["actions"], "minify", []) != null ? lookup(each.value["actions"], "minify", []) : []
+      for_each = each.value["actions"]["minify"] != null ? each.value["actions"]["minify"] : []
       content {
         html = minify.value["html"]
         css  = minify.value["css"]
