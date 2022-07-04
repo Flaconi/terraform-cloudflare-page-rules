@@ -59,7 +59,7 @@ resource "cloudflare_page_rule" "page_rules" {
     cache_level = lookup(each.value["actions"], "cache_level", null)
 
     dynamic "cache_ttl_by_status" {
-      for_each = lookup(each.value["actions"], "cache_ttl_by_status", []) != null ? lookup(each.value["actions"], "cache_ttl_by_status", []) : []
+      for_each = each.value["actions"]["cache_ttl_by_status"] != null ? each.value["actions"]["cache_ttl_by_status"] : []
       content {
         codes = cache_ttl_by_status.value["codes"]
         ttl   = cache_ttl_by_status.value["ttl"]
