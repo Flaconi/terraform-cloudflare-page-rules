@@ -68,7 +68,7 @@ resource "cloudflare_page_rule" "page_rules" {
     email_obfuscation      = lookup(each.value["actions"], "email_obfuscation", null)
     explicit_cache_control = lookup(each.value["actions"], "explicit_cache_control", null)
     dynamic "forwarding_url" {
-      for_each = each.value["actions"]["forwarding_url"] != null ? leach.value["actions"]["forwarding_url"] : []
+      for_each = each.value["actions"]["forwarding_url"] != null ? each.value["actions"]["forwarding_url"] : []
       content {
         status_code = forwarding_url.value["status_code"]
         url         = forwarding_url.value["url"]
