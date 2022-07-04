@@ -29,7 +29,7 @@ resource "cloudflare_page_rule" "page_rules" {
     cache_deception_armor    = lookup(each.value["actions"], "cache_deception_armor", null)
 
     dynamic "cache_key_fields" {
-      for_each = lookup(each.value["actions"], "cache_key_fields", [])
+      for_each = lookup(each.value["actions"], "cache_key_fields", []) != null ? lookup(each.value["actions"], "cache_key_fields", []) : []
       content {
         query_string {
           exclude = contains(keys(cache_key_fields.value), "query_string") ? lookup(cache_key_fields.value["query_string"], "exclude", null) : null
