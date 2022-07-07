@@ -32,18 +32,18 @@ resource "cloudflare_page_rule" "page_rules" {
       for_each = each.value["actions"]["cache_key_fields"] != null ? each.value["actions"]["cache_key_fields"] : []
       content {
         query_string {
-          exclude = contains(keys(cache_key_fields.value), "query_string") ? lookup(cache_key_fields.value["query_string"], "exclude", []) : null
-          include = contains(keys(cache_key_fields.value), "query_string") ? lookup(cache_key_fields.value["query_string"], "include", []) : null
+          exclude = contains(keys(cache_key_fields.value), "query_string") ? lookup(cache_key_fields.value["query_string"], "exclude", []) : []
+          include = contains(keys(cache_key_fields.value), "query_string") ? lookup(cache_key_fields.value["query_string"], "include", []) : []
           ignore  = contains(keys(cache_key_fields.value), "query_string") ? lookup(cache_key_fields.value["query_string"], "ignore", null) : null
         }
         header {
-          exclude        = contains(keys(cache_key_fields.value), "header") ? lookup(cache_key_fields.value["header"], "exclude", []) : null
-          include        = contains(keys(cache_key_fields.value), "header") ? lookup(cache_key_fields.value["header"], "include", []) : null
-          check_presence = contains(keys(cache_key_fields.value), "header") ? lookup(cache_key_fields.value["header"], "check_presence", []) : null
+          exclude        = contains(keys(cache_key_fields.value), "header") ? lookup(cache_key_fields.value["header"], "exclude", []) : []
+          include        = contains(keys(cache_key_fields.value), "header") ? lookup(cache_key_fields.value["header"], "include", []) : []
+          check_presence = contains(keys(cache_key_fields.value), "header") ? lookup(cache_key_fields.value["header"], "check_presence", []) : []
         }
         cookie {
-          check_presence = contains(keys(cache_key_fields.value), "cookie") ? lookup(cache_key_fields.value["cookie"], "check_presence", []) : null
-          include        = contains(keys(cache_key_fields.value), "cookie") ? lookup(cache_key_fields.value["cookie"], "include", []) : null
+          check_presence = contains(keys(cache_key_fields.value), "cookie") ? lookup(cache_key_fields.value["cookie"], "check_presence", []) : []
+          include        = contains(keys(cache_key_fields.value), "cookie") ? lookup(cache_key_fields.value["cookie"], "include", []) : []
         }
         host {
           resolved = contains(keys(cache_key_fields.value), "host") ? lookup(cache_key_fields.value["host"], "resolved", null) : null
