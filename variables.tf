@@ -29,18 +29,18 @@ variable "page_rules" {
 
       cache_key_fields = optional(list(object({
         query_string = object({
-          exclude = string
-          include = string
-          ignore  = string
+          exclude = optional(list(string))
+          include = optional(list(string))
+          ignore  = optional(bool)
         })
         header = object({
-          exclude        = string
-          include        = string
-          check_presence = string
+          exclude        = optional(list(string))
+          include        = optional(list(string))
+          check_presence = optional(list(string))
         })
         cookie = object({
-          include        = string
-          check_presence = string
+          include        = optional(list(string))
+          check_presence = optional(list(string))
         })
         host = object({
           resolved = string
