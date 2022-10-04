@@ -12,7 +12,6 @@ variable "page_rules" {
     target = string
     status = string
     actions = object({
-      always_online            = optional(string)
       always_use_https         = optional(bool)
       disable_apps             = optional(bool)
       disable_performance      = optional(bool)
