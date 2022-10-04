@@ -13,7 +13,6 @@ resource "cloudflare_page_rule" "page_rules" {
   status   = lookup(each.value, "status", null)
 
   actions {
-    always_online            = lookup(each.value["actions"], "always_online", null)
     always_use_https         = lookup(each.value["actions"], "always_use_https", null)
     disable_apps             = lookup(each.value["actions"], "disable_apps", null)
     disable_performance      = lookup(each.value["actions"], "disable_performance", null)
