@@ -1,11 +1,9 @@
-# https://github.com/cloudflare/terraform-provider-cloudflare
 terraform {
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 3.21"
+      version = "~> 3.33"
     }
   }
-  required_version = "~> 1.0"
-  experiments      = [module_variable_optional_attrs]
+  required_version = "~> 1.3"
 }
