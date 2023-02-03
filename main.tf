@@ -9,93 +9,94 @@ resource "cloudflare_page_rule" "page_rules" {
   for_each = local.page_rules
   target   = each.value["target"]
 
-  priority = lookup(each.value, "priority", null)
-  status   = lookup(each.value, "status", null)
+  priority = each.value["priority"]
+  status   = each.value["status"]
 
   actions {
-    always_use_https         = lookup(each.value["actions"], "always_use_https", null)
-    disable_apps             = lookup(each.value["actions"], "disable_apps", null)
-    disable_performance      = lookup(each.value["actions"], "disable_performance", null)
-    disable_railgun          = lookup(each.value["actions"], "disable_railgun", null)
-    disable_security         = lookup(each.value["actions"], "disable_security", null)
-    edge_cache_ttl           = lookup(each.value["actions"], "edge_cache_ttl", null)
-    automatic_https_rewrites = lookup(each.value["actions"], "automatic_https_rewrites", null)
-    browser_cache_ttl        = lookup(each.value["actions"], "browser_cache_ttl", null)
-    browser_check            = lookup(each.value["actions"], "browser_check", null)
-    bypass_cache_on_cookie   = lookup(each.value["actions"], "bypass_cache_on_cookie", null)
-    cache_on_cookie          = lookup(each.value["actions"], "cache_on_cookie", null)
-    cache_by_device_type     = lookup(each.value["actions"], "cache_by_device_type", null)
-    cache_deception_armor    = lookup(each.value["actions"], "cache_deception_armor", null)
+    always_use_https         = each.value["actions"]["always_use_https"]
+    disable_apps             = each.value["actions"]["disable_apps"]
+    disable_performance      = each.value["actions"]["disable_performance"]
+    disable_railgun          = each.value["actions"]["disable_railgun"]
+    disable_security         = each.value["actions"]["disable_security"]
+    disable_zaraz            = each.value["actions"]["disable_zaraz"]
+    edge_cache_ttl           = each.value["actions"]["edge_cache_ttl"]
+    automatic_https_rewrites = each.value["actions"]["automatic_https_rewrites"]
+    browser_cache_ttl        = each.value["actions"]["browser_cache_ttl"]
+    browser_check            = each.value["actions"]["browser_check"]
+    bypass_cache_on_cookie   = each.value["actions"]["bypass_cache_on_cookie"]
+    cache_on_cookie          = each.value["actions"]["cache_on_cookie"]
+    cache_by_device_type     = each.value["actions"]["cache_by_device_type"]
+    cache_deception_armor    = each.value["actions"]["cache_deception_armor"]
 
     dynamic "cache_key_fields" {
-      for_each = each.value["actions"]["cache_key_fields"] != null ? each.value["actions"]["cache_key_fields"] : []
+      for_each = each.value["actions"]["cache_key_fields"]
       content {
         query_string {
-          exclude = contains(keys(cache_key_fields.value), "query_string") ? lookup(cache_key_fields.value["query_string"], "exclude", []) : []
-          include = contains(keys(cache_key_fields.value), "query_string") ? lookup(cache_key_fields.value["query_string"], "include", []) : []
-          ignore  = contains(keys(cache_key_fields.value), "query_string") ? lookup(cache_key_fields.value["query_string"], "ignore", null) : null
+          exclude = cache_key_fields.value["query_string"]["exclude"]
+          include = cache_key_fields.value["query_string"]["include"]
+          ignore  = cache_key_fields.value["query_string"]["ignore"]
         }
         header {
-          exclude        = contains(keys(cache_key_fields.value), "header") ? lookup(cache_key_fields.value["header"], "exclude", []) : []
-          include        = contains(keys(cache_key_fields.value), "header") ? lookup(cache_key_fields.value["header"], "include", []) : []
-          check_presence = contains(keys(cache_key_fields.value), "header") ? lookup(cache_key_fields.value["header"], "check_presence", []) : []
+          exclude        = cache_key_fields.value["header"]["exclude"]
+          include        = cache_key_fields.value["header"]["include"]
+          check_presence = cache_key_fields.value["header"]["check_presence"]
         }
         cookie {
-          check_presence = contains(keys(cache_key_fields.value), "cookie") ? lookup(cache_key_fields.value["cookie"], "check_presence", []) : []
-          include        = contains(keys(cache_key_fields.value), "cookie") ? lookup(cache_key_fields.value["cookie"], "include", []) : []
+          check_presence = cache_key_fields.value["cookie"]["check_presence"]
+          include        = cache_key_fields.value["cookie"]["include"]
         }
         host {
-          resolved = contains(keys(cache_key_fields.value), "host") ? lookup(cache_key_fields.value["host"], "resolved", null) : null
+          resolved = cache_key_fields.value["host"]["resolved"]
         }
         user {
-          lang        = contains(keys(cache_key_fields.value), "user") ? lookup(cache_key_fields.value["user"], "lang", null) : null
-          device_type = contains(keys(cache_key_fields.value), "user") ? lookup(cache_key_fields.value["user"], "device_type", null) : null
-          geo         = contains(keys(cache_key_fields.value), "user") ? lookup(cache_key_fields.value["user"], "geo", null) : null
+          lang        = cache_key_fields.value["user"]["lang"]
+          device_type = cache_key_fields.value["user"]["device_type"]
+          geo         = cache_key_fields.value["user"]["geo"]
         }
       }
     }
 
-    cache_level = lookup(each.value["actions"], "cache_level", null)
+    cache_level = each.value["actions"]["cache_level"]
 
     dynamic "cache_ttl_by_status" {
-      for_each = each.value["actions"]["cache_ttl_by_status"] != null ? each.value["actions"]["cache_ttl_by_status"] : []
+      for_each = each.value["actions"]["cache_ttl_by_status"]
       content {
         codes = cache_ttl_by_status.value["codes"]
         ttl   = cache_ttl_by_status.value["ttl"]
       }
     }
-    email_obfuscation      = lookup(each.value["actions"], "email_obfuscation", null)
-    explicit_cache_control = lookup(each.value["actions"], "explicit_cache_control", null)
+    email_obfuscation      = each.value["actions"]["email_obfuscation"]
+    explicit_cache_control = each.value["actions"]["explicit_cache_control"]
     dynamic "forwarding_url" {
-      for_each = each.value["actions"]["forwarding_url"] != null ? each.value["actions"]["forwarding_url"] : []
+      for_each = each.value["actions"]["forwarding_url"]
       content {
         status_code = forwarding_url.value["status_code"]
         url         = forwarding_url.value["url"]
       }
     }
-    host_header_override = lookup(each.value["actions"], "host_header_override", null)
-    ip_geolocation       = lookup(each.value["actions"], "ip_geolocation", null)
+    host_header_override = each.value["actions"]["host_header_override"]
+    ip_geolocation       = each.value["actions"]["ip_geolocation"]
     dynamic "minify" {
-      for_each = each.value["actions"]["minify"] != null ? each.value["actions"]["minify"] : []
+      for_each = each.value["actions"]["minify"]
       content {
         html = minify.value["html"]
         css  = minify.value["css"]
         js   = minify.value["js"]
       }
     }
-    mirage                      = lookup(each.value["actions"], "mirage", null)
-    opportunistic_encryption    = lookup(each.value["actions"], "opportunistic_encryption", null)
-    origin_error_page_pass_thru = lookup(each.value["actions"], "origin_error_page_pass_thru", null)
-    polish                      = lookup(each.value["actions"], "polish", null)
-    resolve_override            = lookup(each.value["actions"], "resolve_override", null)
-    respect_strong_etag         = lookup(each.value["actions"], "respect_strong_etag", null)
-    response_buffering          = lookup(each.value["actions"], "response_buffering", null)
-    rocket_loader               = lookup(each.value["actions"], "rocket_loader", null)
-    security_level              = lookup(each.value["actions"], "security_level", null)
-    server_side_exclude         = lookup(each.value["actions"], "server_side_exclude", null)
-    sort_query_string_for_cache = lookup(each.value["actions"], "sort_query_string_for_cache", null)
-    ssl                         = lookup(each.value["actions"], "ssl", null)
-    true_client_ip_header       = lookup(each.value["actions"], "true_client_ip_header", null)
-    waf                         = lookup(each.value["actions"], "waf", null)
+    mirage                      = each.value["actions"]["mirage"]
+    opportunistic_encryption    = each.value["actions"]["opportunistic_encryption"]
+    origin_error_page_pass_thru = each.value["actions"]["origin_error_page_pass_thru"]
+    polish                      = each.value["actions"]["polish"]
+    resolve_override            = each.value["actions"]["resolve_override"]
+    respect_strong_etag         = each.value["actions"]["respect_strong_etag"]
+    response_buffering          = each.value["actions"]["response_buffering"]
+    rocket_loader               = each.value["actions"]["rocket_loader"]
+    security_level              = each.value["actions"]["security_level"]
+    server_side_exclude         = each.value["actions"]["server_side_exclude"]
+    sort_query_string_for_cache = each.value["actions"]["sort_query_string_for_cache"]
+    ssl                         = each.value["actions"]["ssl"]
+    true_client_ip_header       = each.value["actions"]["true_client_ip_header"]
+    waf                         = each.value["actions"]["waf"]
   }
 }
