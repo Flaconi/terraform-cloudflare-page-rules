@@ -4,6 +4,7 @@
 [![lint](https://github.com/flaconi/terraform-cloudflare-pagerules/workflows/lint/badge.svg)](https://github.com/flaconi/terraform-cloudflare-pagerules/actions?query=workflow%3Alint)
 [![test](https://github.com/flaconi/terraform-cloudflare-pagerules/workflows/test/badge.svg)](https://github.com/flaconi/terraform-cloudflare-pagerules/actions?query=workflow%3Atest)
 [![Tag](https://img.shields.io/github/tag/flaconi/terraform-cloudflare-pagerules.svg)](https://github.com/flaconi/terraform-cloudflare-pagerules/releases)
+[![Terraform](https://img.shields.io/badge/Terraform--registry-cloudflare--page--rules-brightgreen.svg)](https://registry.terraform.io/modules/flaconi/page-rules/cloudflare/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## Priority of rules

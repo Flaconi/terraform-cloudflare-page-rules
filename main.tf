@@ -1,9 +1,3 @@
-data "cloudflare_zones" "domain" {
-  filter {
-    name = var.domain
-  }
-}
-
 resource "cloudflare_page_rule" "page_rules" {
   zone_id  = lookup(data.cloudflare_zones.domain.zones[0], "id")
   for_each = local.page_rules
