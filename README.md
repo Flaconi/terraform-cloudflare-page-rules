@@ -180,7 +180,7 @@ Default: `[]`
 | Name | Description |
 |------|-------------|
 | <a name="output_domain"></a> [domain](#output\_domain) | Current zone information. |
-| <a name="output_page_rules"></a> [page\_rules](#output\_page\_rules) | Created Cloudflare page rules for the current zone. |
+| <a name="output_rules"></a> [rules](#output\_rules) | Created Cloudflare page rules for the current zone. |
 
 <!-- TFDOCS_OUTPUTS_END -->
 
@@ -188,4 +188,4 @@ Default: `[]`
 
 **[MIT License](LICENSE)**
 
-Copyright (c) 2022 **[Flaconi GmbH](https://github.com/flaconi)**
+Copyright (c) 2022-25 **[Flaconi GmbH](https://github.com/flaconi)**
